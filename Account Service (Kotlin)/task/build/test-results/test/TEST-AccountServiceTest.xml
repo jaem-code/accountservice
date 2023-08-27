@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AccountServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-27T07:26:52" hostname="JAEM" time="17.924">
+  <properties/>
+  <testcase name="start" classname="AccountServiceTest" time="17.924"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+?[0;34m
+?[0m?[0;34m  .   ____          _            __ _ _
+?[0m?[0;34m /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+?[0m?[0;34m( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+?[0m?[0;34m \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+?[0m?[0;34m  '  |____| .__|_| |_|_| |_\__, | / / / /
+?[0m?[0;34m =========|_|==============|___/=/_/_/_/
+?[0m?[0;34m :: Spring Boot ::                (v2.5.6)
+?[0m?[0;34m
+?[0m?[0;34m2023-08-27 16:26:52.713  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : Starting AccountServiceApplicationKt using Java 17.0.7 on JAEM with PID 23144 (started by jaemc in C:\Users\jaemc\Downloads\Account Service (Kotlin)\Account Service (Kotlin)\task)
+?[0m?[0;34m2023-08-27 16:26:52.716  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : No active profile set, falling back to default profiles: default
+?[0m?[0;34m2023-08-27 16:26:53.573  INFO 23144 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+?[0m?[0;34m2023-08-27 16:26:53.621  INFO 23144 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 1 JPA repository interfaces.
+?[0m?[0;34m2023-08-27 16:26:54.101  INFO 23144 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+?[0m?[0;34m2023-08-27 16:26:54.111  INFO 23144 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+?[0m?[0;34m2023-08-27 16:26:54.111  INFO 23144 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+?[0m?[0;34m2023-08-27 16:26:54.193  INFO 23144 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+?[0m?[0;34m2023-08-27 16:26:54.193  INFO 23144 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1434 ms
+?[0m?[0;34m2023-08-27 16:26:54.290  INFO 23144 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+?[0m?[0;34m2023-08-27 16:26:54.441  INFO 23144 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+?[0m?[0;34m2023-08-27 16:26:54.448  INFO 23144 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+?[0m?[0;34m2023-08-27 16:26:54.579  INFO 23144 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+?[0m?[0;34m2023-08-27 16:26:54.624  INFO 23144 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+?[0m?[0;34m2023-08-27 16:26:54.755  INFO 23144 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+?[0m?[0;34m2023-08-27 16:26:54.864  INFO 23144 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+?[0m?[0;34mHibernate: create table user (id bigint not null, email varchar(255), lastname varchar(255), name varchar(255), password varchar(255), primary key (id))
+?[0m?[0;34mHibernate: create sequence user_sequence start with 1 increment by 1
+?[0m?[0;34m2023-08-27 16:26:55.269  INFO 23144 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+?[0m?[0;34m2023-08-27 16:26:55.278  INFO 23144 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-08-27 16:26:55.909  INFO 23144 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ad6448e, org.springframework.security.web.context.SecurityContextPersistenceFilter@70ab1ce0, org.springframework.security.web.header.HeaderWriterFilter@74267ece, org.springframework.security.web.authentication.logout.LogoutFilter@a70daf4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@64836643, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@765eb801, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d0fc0bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3da6950f, org.springframework.security.web.session.SessionManagementFilter@38f3dbbf, org.springframework.security.web.access.ExceptionTranslationFilter@62c1259f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2319c1e0]
+?[0m?[0;34m2023-08-27 16:26:55.972  WARN 23144 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+?[0m?[0;34m2023-08-27 16:26:56.427  INFO 23144 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+?[0m?[0;34m2023-08-27 16:26:56.462  INFO 23144 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+?[0m?[0;34m2023-08-27 16:26:56.473  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : Started AccountServiceApplicationKt in 4.032 seconds (JVM running for 4.762)
+?[0;34m2023-08-27 16:26:56.725  INFO 23144 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+?[0m?[0;34m2023-08-27 16:26:56.725  INFO 23144 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+?[0m?[0;34m2023-08-27 16:26:56.727  INFO 23144 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: call next value for user_sequence
+?[0m?[0;34mHibernate: insert into user (email, lastname, name, password, id) values (?, ?, ?, ?, ?)
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[1;31m
+Start test 2?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 3?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 4?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 5?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: call next value for user_sequence
+?[0m?[0;34mHibernate: insert into user (email, lastname, name, password, id) values (?, ?, ?, ?, ?)
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 6?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 7?[0m
+?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 8?[0m
+?[0;34m2023-08-27 16:26:57.310  WARN 23144 --- [o-28852-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest): [Field error in object 'signUpRequest' on field 'name': rejected value []; codes [NotEmpty.signUpRequest.name,NotEmpty.name,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.name,name]; arguments []; default message [name]]; default message [must not be empty]] ]
+?[1;31m
+Start test 9?[0m
+?[0m?[0;34m2023-08-27 16:26:57.326  WARN 23144 --- [io-28852-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type<LF> at [Source: (PushbackInputStream); line: 1, column: 65] (through reference chain: account.dto.SignUpRequest["name"])]
+?[1;31m
+Start test 10?[0m
+?[0m?[0;34m2023-08-27 16:26:57.333  WARN 23144 --- [io-28852-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest): [Field error in object 'signUpRequest' on field 'lastname': rejected value []; codes [NotEmpty.signUpRequest.lastname,NotEmpty.lastname,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.lastname,lastname]; arguments []; default message [lastname]]; default message [must not be empty]] ]
+?[1;31m
+Start test 11?[0m
+?[0m?[0;34m2023-08-27 16:26:57.340  WARN 23144 --- [io-28852-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property lastname due to missing (therefore NULL) value for creator parameter lastname which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property lastname due to missing (therefore NULL) value for creator parameter lastname which is a non-nullable type<LF> at [Source: (PushbackInputStream); line: 1, column: 62] (through reference chain: account.dto.SignUpRequest["lastname"])]
+?[1;31m
+Start test 12?[0m
+?[0m?[0;34m2023-08-27 16:26:57.351  WARN 23144 --- [io-28852-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest) with 2 errors: [Field error in object 'signUpRequest' on field 'email': rejected value []; codes [Pattern.signUpRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7b405a86,^[A-Za-z0-9+_.-]+@acme\.com$]; default message [must match "^[A-Za-z0-9+_.-]+@acme\.com$"]] [Field error in object 'signUpRequest' on field 'email': rejected value []; codes [NotEmpty.signUpRequest.email,NotEmpty.email,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.email,email]; arguments []; default message [email]]; default message [must not be empty]] ]
+?[1;31m
+Start test 13?[0m
+?[0m?[0;34m2023-08-27 16:26:57.358  WARN 23144 --- [io-28852-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property lastname due to missing (therefore NULL) value for creator parameter lastname which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property lastname due to missing (therefore NULL) value for creator parameter lastname which is a non-nullable type<LF> at [Source: (PushbackInputStream); line: 1, column: 62] (through reference chain: account.dto.SignUpRequest["lastname"])]
+?[1;31m
+Start test 14?[0m
+?[0m?[0;34m2023-08-27 16:26:57.367  WARN 23144 --- [io-28852-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest): [Field error in object 'signUpRequest' on field 'password': rejected value []; codes [NotEmpty.signUpRequest.password,NotEmpty.password,NotEmpty.java.lang.String,NotEmpty]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.password,password]; arguments []; default message [password]]; default message [must not be empty]] ]
+?[1;31m
+Start test 15?[0m
+?[0m?[0;34m2023-08-27 16:26:57.378  WARN 23144 --- [io-28852-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property password due to missing (therefore NULL) value for creator parameter password which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class account.dto.SignUpRequest] value failed for JSON property password due to missing (therefore NULL) value for creator parameter password which is a non-nullable type<LF> at [Source: (PushbackInputStream); line: 1, column: 59] (through reference chain: account.dto.SignUpRequest["password"])]
+?[1;31m
+Start test 16?[0m
+?[0m?[0;34m2023-08-27 16:26:57.385  WARN 23144 --- [io-28852-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest): [Field error in object 'signUpRequest' on field 'email': rejected value [johndoeacme.com]; codes [Pattern.signUpRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7b405a86,^[A-Za-z0-9+_.-]+@acme\.com$]; default message [must match "^[A-Za-z0-9+_.-]+@acme\.com$"]] ]
+?[1;31m
+Start test 17?[0m
+?[0m?[0;34m2023-08-27 16:26:57.392  WARN 23144 --- [o-28852-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<java.lang.Object> account.controller.AuthController.signUp(account.dto.SignUpRequest): [Field error in object 'signUpRequest' on field 'email': rejected value [johndoe@google.com]; codes [Pattern.signUpRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [signUpRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@7b405a86,^[A-Za-z0-9+_.-]+@acme\.com$]; default message [must match "^[A-Za-z0-9+_.-]+@acme\.com$"]] ]
+?[1;31m
+Start test 18?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 19?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 20?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 21?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 22?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 23?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 24?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 25?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 26?[0m
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+?[1;31m
+Start test 27?[0m
+?[1;31m
+Start test 28?[0m
+?[0;34m2023-08-27 16:26:58.942  INFO 23144 --- [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-08-27 16:26:58.944  INFO 23144 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+?[0m?[0;34m2023-08-27 16:26:58.950  INFO 23144 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+?[0;34m
+?[0m?[0;34m  .   ____          _            __ _ _
+?[0m?[0;34m /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+?[0m?[0;34m( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+?[0m?[0;34m \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+?[0m?[0;34m  '  |____| .__|_| |_|_| |_\__, | / / / /
+?[0m?[0;34m =========|_|==============|___/=/_/_/_/
+?[0m?[0;34m :: Spring Boot ::                (v2.5.6)
+?[0m?[0;34m
+?[0m?[0;34m2023-08-27 16:27:09.297  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : Starting AccountServiceApplicationKt using Java 17.0.7 on JAEM with PID 23144 (started by jaemc in C:\Users\jaemc\Downloads\Account Service (Kotlin)\Account Service (Kotlin)\task)
+?[0m?[0;34m2023-08-27 16:27:09.298  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : No active profile set, falling back to default profiles: default
+?[0m?[0;34m2023-08-27 16:27:09.480  INFO 23144 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+?[0m?[0;34m2023-08-27 16:27:09.487  INFO 23144 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 1 JPA repository interfaces.
+?[0m?[0;34m2023-08-27 16:27:09.545  INFO 23144 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+?[0m?[0;34m2023-08-27 16:27:09.546  INFO 23144 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+?[0m?[0;34m2023-08-27 16:27:09.547  INFO 23144 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+?[0m?[0;34m2023-08-27 16:27:09.572  INFO 23144 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+?[0m?[0;34m2023-08-27 16:27:09.572  INFO 23144 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 273 ms
+?[0m?[0;34m2023-08-27 16:27:09.595  INFO 23144 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+?[0m?[0;34m2023-08-27 16:27:09.601  INFO 23144 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+?[0m?[0;34m2023-08-27 16:27:09.601  INFO 23144 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+?[0m?[0;34m2023-08-27 16:27:09.631  INFO 23144 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+?[0m?[0;34m2023-08-27 16:27:09.635  INFO 23144 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+?[0m?[0;34m2023-08-27 16:27:09.658  INFO 23144 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+?[0m?[0;34m2023-08-27 16:27:09.659  INFO 23144 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[0m?[0;34m2023-08-27 16:27:09.722  INFO 23144 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52dfd7f5, org.springframework.security.web.context.SecurityContextPersistenceFilter@158f0af4, org.springframework.security.web.header.HeaderWriterFilter@4e09c3b0, org.springframework.security.web.authentication.logout.LogoutFilter@695f382c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@19070326, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a174e4b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a8316fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b5f48d5, org.springframework.security.web.session.SessionManagementFilter@64f34c91, org.springframework.security.web.access.ExceptionTranslationFilter@1dbe592f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3eb4fdd5]
+?[0m?[0;34m2023-08-27 16:27:09.748  WARN 23144 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+?[0m?[0;34m2023-08-27 16:27:09.855  INFO 23144 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+?[0m?[0;34m2023-08-27 16:27:09.867  INFO 23144 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+?[0m?[0;34m2023-08-27 16:27:09.873  INFO 23144 --- [    Test worker] account.AccountServiceApplicationKt      : Started AccountServiceApplicationKt in 0.591 seconds (JVM running for 18.162)
+?[0m?[1;31m
+Start test 29?[0m
+?[0;34m2023-08-27 16:27:09.877  INFO 23144 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+?[0m?[0;34m2023-08-27 16:27:09.877  INFO 23144 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+?[0m?[0;34m2023-08-27 16:27:09.878  INFO 23144 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+?[0m?[0;34mHibernate: select user0_.id as id1_0_, user0_.email as email2_0_, user0_.lastname as lastname3_0_, user0_.name as name4_0_, user0_.password as password5_0_ from user user0_ where upper(user0_.email)=upper(?)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
