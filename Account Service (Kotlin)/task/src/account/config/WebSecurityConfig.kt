@@ -16,14 +16,15 @@ import org.springframework.security.web.SecurityFilterChain
 
 @EnableWebSecurity
 class SecurityConfig(
-    private val userDetailsService: CustomUserDetailsService
+    private val userDetailsService: CustomUserDetailsService,
+    private val restAuthenticationEntryPoint: RestAuthenticationEntryPoint
 ) {
 
     // SecurityFilterChain을 정의하는 빈 설정
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain =
         http
-            .exceptionHandling { ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint()) } // 예외 처리 설정
+            .exceptionHandling { ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint) } // 예외 처리 설정
             .csrf { csrf -> csrf.disable() }  // CSRF 보호 비활성화 (Postman을 위해)
             .headers { headers -> headers.frameOptions().disable() } // X-Frame-Options 비활성화 (H2 콘솔을 위해)
             .authorizeRequests { auth ->
@@ -43,10 +44,10 @@ class SecurityConfig(
             .build()
 
     // REST API에 대한 인증 예외 처리를 위한 빈 설정
-    @Bean
-    fun restAuthenticationEntryPoint(): AuthenticationEntryPoint {
-        return RestAuthenticationEntryPoint()
-    }
+//    @Bean
+//    fun restAuthenticationEntryPoint(): AuthenticationEntryPoint {
+//        return RestAuthenticationEntryPoint()
+//    }
 
     // DaoAuthenticationProvider 설정을 위한 빈 설정
     @Bean

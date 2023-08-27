@@ -1,5 +1,6 @@
 package account.controller
 
+import account.dto.ErrorResponseDTO
 import account.dto.LoginDTO
 import account.service.CustomUserDetails
 import org.springframework.http.HttpStatus
@@ -19,8 +20,9 @@ class EmplController {
     @GetMapping("/payment")
     fun getPaymentInfo(@AuthenticationPrincipal userDetails: UserDetails?
     ): ResponseEntity<Any> {
-        if (userDetails != null && userDetails is CustomUserDetails) {
-            val loggedInUser = userDetails // CustomUserDetails로 형변환
+        if (userDetails != null) {
+            // 인증된 사용자인 경우 로그인 정보를 DTO로 변환하여 응답
+            val loggedInUser = userDetails as CustomUserDetails // CustomUserDetails로 형변환
             val loginDTO = LoginDTO(
                 id = loggedInUser.getId(),
                 name = loggedInUser.getName(),
@@ -29,18 +31,19 @@ class EmplController {
             )
             return ResponseEntity.ok(loginDTO)
         } else {
+            // 인증되지 않은 경우 UNAUTHORIZED 응답 생성
             val currentDateTime = LocalDateTime.now()
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             val formattedDateTime = currentDateTime.format(formatter)
 
-            val responseBody = mapOf(
-                "timestamp" to formattedDateTime,
-                "status" to HttpStatus.UNAUTHORIZED.value(),
-                "error" to HttpStatus.UNAUTHORIZED.reasonPhrase,
-                "message" to "",
-                "path" to "/api/empl/payment"
+            val errorResponse = ErrorResponseDTO(
+                timestamp = formattedDateTime,
+                status = HttpStatus.UNAUTHORIZED.value(),
+                error = HttpStatus.UNAUTHORIZED.reasonPhrase,
+                message = "",
+                path = "/api/empl/payment"
             )
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseBody)
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse)
         }
     }
 }

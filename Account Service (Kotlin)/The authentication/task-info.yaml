@@ -458,9 +458,12 @@ files:
 - name: src/account/service/CustomUserDetails.kt
   visible: true
   learner_created: true
-feedback_link: https://hyperskill.org/projects/332/stages/1862/implement#comment
+- name: src/account/dto/ErrorResponse.kt
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/27097#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Sun, 27 Aug 2023 07:27:10 UTC"
+  time: "Sun, 27 Aug 2023 10:22:49 UTC"
 record: -1
