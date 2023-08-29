@@ -1,7 +1,8 @@
 package account.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import javax.persistence.*
+import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "user")
@@ -13,8 +14,10 @@ data class User(
     val name: String,
     val lastname: String,
 
+    @Column(columnDefinition = "VARCHAR_IGNORECASE")
     val email: String,
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @field:Size(min = 12)
     val password: String
 )

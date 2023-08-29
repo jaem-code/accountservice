@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/27566/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Sun, 27 Aug 2023 09:38:44 UTC"
+update_date: "Tue, 29 Aug 2023 02:02:47 UTC"
 stages:
 - id: 1861
   step: 27096
@@ -13,7 +13,7 @@ stages:
   is_completed: true
 - id: 1863
   step: 27098
-  is_completed: false
+  is_completed: true
 - id: 1864
   step: 27099
   is_completed: false
@@ -99,6 +99,10 @@ topics:
     theory_id: 13971
   - title: Advanced exception handling in Spring Boot
     theory_id: 19855
+  - title: Transaction management
+    theory_id: 28141
+  - title: Property expressions
+    theory_id: 28236
   - title: Insecure Cryptographic Storage
     theory_id: 20069
   - title: Spring Security Crypto
@@ -163,8 +167,26 @@ topics:
     theory_id: 13785
   - title: What is SQL
     theory_id: 7054
+  - title: Basic data types
+    theory_id: 7123
+  - title: Literals
+    theory_id: 7400
+  - title: Arithmetic expressions
+    theory_id: 7409
+  - title: Basic CREATE statement
+    theory_id: 9084
+  - title: Basic SELECT statement
+    theory_id: 7392
+  - title: SELECT FROM statement
+    theory_id: 8611
+  - title: Logic and comparison expressions
+    theory_id: 8619
   - title: Interfaces
     theory_id: 9640
+  - title: Basic INSERT statement
+    theory_id: 9059
+  - title: Basic DELETE statement
+    theory_id: 9075
   - title: JSON
     theory_id: 6854
   - title: XML
@@ -175,6 +197,10 @@ topics:
     theory_id: 8312
   - title: Intro to MySQL
     theory_id: 16662
+  - title: The NULL value
+    theory_id: 7907
+  - title: Special WHERE operators
+    theory_id: 10521
   - title: "Hashing: overview"
     theory_id: 9831
   - title: Hash function
@@ -187,12 +213,20 @@ topics:
     theory_id: 13292
   - title: Handling requests with bodies
     theory_id: 13334
+  - title: Customizing REST responses
+    theory_id: 33247
+  - title: Introduction to transactions
+    theory_id: 12144
+  - title: Understanding Transactions
+    theory_id: 12357
   - title: Introduction to PostgreSQL
     theory_id: 17974
   - title: Authentication and Authorization
     theory_id: 14219
   - title: MVC
     theory_id: 17197
+  - title: Entities
+    theory_id: 18135
   3:
   - title: Binary numbers
     theory_id: 5544
@@ -202,8 +236,6 @@ topics:
     theory_id: 6865
   - title: Using Spring MVC
     theory_id: 28136
-  - title: Transaction management
-    theory_id: 28141
   - title: Basic literals
     theory_id: 4351
   - title: Overview of the basic program
@@ -298,28 +330,6 @@ topics:
     theory_id: 10730
   - title: Mutable List
     theory_id: 11032
-  - title: Basic data types
-    theory_id: 7123
-  - title: Literals
-    theory_id: 7400
-  - title: Arithmetic expressions
-    theory_id: 7409
-  - title: Basic CREATE statement
-    theory_id: 9084
-  - title: Basic SELECT statement
-    theory_id: 7392
-  - title: SELECT FROM statement
-    theory_id: 8611
-  - title: Logic and comparison expressions
-    theory_id: 8619
-  - title: Basic INSERT statement
-    theory_id: 9059
-  - title: Basic DELETE statement
-    theory_id: 9075
-  - title: The NULL value
-    theory_id: 7907
-  - title: Special WHERE operators
-    theory_id: 10521
   - title: Encapsulation
     theory_id: 8519
   - title: Property accessors
@@ -334,10 +344,6 @@ topics:
     theory_id: 9067
   - title: POST vs. PUT requests
     theory_id: 27497
-  - title: Introduction to transactions
-    theory_id: 12144
-  - title: Understanding Transactions
-    theory_id: 12357
   - title: What is an exception
     theory_id: 7243
   - title: Hierarchy of exceptions
@@ -353,8 +359,6 @@ topics:
   - title: Consistency constraints
     theory_id: 9587
   4:
-  - title: Entities
-    theory_id: 18135
   - title: JPA relationships
     theory_id: 17787
   - title: Cascade operations

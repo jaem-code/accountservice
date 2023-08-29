@@ -297,17 +297,6 @@ files:
         }
     }
   learner_created: false
-- name: src/account/exception/UserExistException.kt
-  visible: true
-  text: |
-    package account.exception
-
-    import org.springframework.http.HttpStatus
-    import org.springframework.web.bind.annotation.ResponseStatus
-
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "User already exists")
-    class UserExistException : RuntimeException()
-  learner_created: false
 - name: src/account/config/RestAuthenticationEntryPoint.kt
   visible: true
   text: |-
@@ -901,6 +890,89 @@ files:
       };
     }
   learner_created: false
+- name: src/account/dto/SignUpResponse.kt
+  visible: true
+  text: |-
+    package account.dto
+
+    data class SignUpResponse(
+        val id: Long?,
+        val name: String?,
+        val lastname: String?,
+        val email: String?
+    )
+  learner_created: true
+- name: src/account/dto/ErrorResponse.kt
+  visible: true
+  text: |-
+    package account.dto
+
+    data class ErrorResponseDTO(
+        val timestamp: String,
+        val status: Int,
+        val error: String,
+        val message: String,
+        val path: String
+    )
+  learner_created: true
+- name: src/account/service/UserServiceImpl.kt
+  visible: true
+  text: |+
+    package account.service
+
+    import account.dto.SignUpRequest
+    import account.entity.User
+    import account.exception.UserAlreadyExistsException
+    import account.repository.UserRepository
+    import org.springframework.security.crypto.password.PasswordEncoder
+    import org.springframework.stereotype.Service
+
+    @Service
+    class UserServiceImpl(
+        private val userRepository: UserRepository,
+        private val passwordEncoder: PasswordEncoder
+    ): UserService {
+
+        // 회원 가입을 처리하는 메서드
+        override fun registerUser(signUpRequest: SignUpRequest): User {
+            // 이미 등록된 이메일인지 검사
+            val existingUser = userRepository.findByEmailIgnoreCase(signUpRequest.email)
+            if (existingUser != null) {
+                throw UserAlreadyExistsException("User exist!")
+            }
+
+            // 패스워드 암호화 먼저하고 회원 정보 생성. password를 reassign 할 수 없기 때문
+            val encryptedPassword = passwordEncoder.encode(signUpRequest.password)
+
+            // 회원 정보 생성
+            val user = User(
+                name = signUpRequest.name,
+                lastname = signUpRequest.lastname,
+                email = signUpRequest.email,
+                password = encryptedPassword
+            )
+
+            // 회원 정보 저장 후 반환
+            return userRepository.save(user)
+        }
+    }
+
+  learner_created: true
+- name: src/account/service/PasswordService.kt
+  visible: true
+  learner_created: true
+- name: src/account/dto/ChangePasswordRequest.kt
+  visible: true
+  learner_created: true
+- name: src/account/exception/GlobalExceptionHandler.kt
+  visible: true
+  learner_created: true
+- name: src/account/exception/DateTimeFormatter.kt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/27098#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 29 Aug 2023 04:45:56 UTC"
 record: -1

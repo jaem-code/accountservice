@@ -61,6 +61,6 @@ class SecurityConfig(
     // 비밀번호 암호화를 위한 PasswordEncoder 빈 설정
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder() // BCrypt 암호화 방식 사용
+        return BCryptPasswordEncoder(13) // BCrypt 암호화 방식 사용
     }
 }

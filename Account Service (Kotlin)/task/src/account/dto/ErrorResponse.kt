@@ -1,6 +1,6 @@
 package account.dto
 
-data class ErrorResponseDTO(
+data class ErrorResponse(
     val timestamp: String,
     val status: Int,
     val error: String,

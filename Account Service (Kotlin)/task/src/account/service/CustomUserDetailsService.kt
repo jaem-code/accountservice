@@ -1,9 +1,9 @@
 package account.service
 
+import account.exception.UserNotFoundException
 import account.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,9 +16,10 @@ class CustomUserDetailsService(
     // UserDetailsService 인터페이스를 구현하여 loadUserByUsername 메서드를 재정의
     // 입력된 이메일에 해당하는 사용자를 UserRepository를 통해 검색하고, 존재하지 않으면 예외 발생
     // 존재하는 사용자라면 CustomUserDetails 객체를 생성하여 반환
+    @Throws(UserNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
         val user = userRepository.findByEmailIgnoreCase(username)
-            ?: throw UsernameNotFoundException("User not found with email: $username")
+            ?: throw UserNotFoundException("User not found with email: $username")
 
         return CustomUserDetails(user) // CustomUserDetails는 사용자 정보를 담는 UserDetails 구현 클래스
     }

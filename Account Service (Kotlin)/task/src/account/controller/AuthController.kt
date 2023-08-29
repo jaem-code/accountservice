@@ -1,24 +1,27 @@
 package account.controller
 
-import account.dto.ErrorResponseDTO
+import account.dto.ChangePasswordRequest
 import account.dto.SignUpRequest
 import account.dto.SignUpResponse
-import account.exception.UserAlreadyExistsException
+import account.exception.*
+import account.service.CustomUserDetails
+import account.service.PasswordService
 import account.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/auth")
 class AuthController(
-    private val userService: UserService
+    private val userService: UserService,
+    private val passwordService: PasswordService,
+    private val globalExceptionHandler: GlobalExceptionHandler
 ) {
     /**
      * 회원 가입을 처리하는 엔드포인트입니다.
@@ -30,6 +33,11 @@ class AuthController(
     @PostMapping("/signup")
     fun signUp(@RequestBody @Valid signUpRequest: SignUpRequest): ResponseEntity<Any> {
         try {
+            // 비밀번호 유출 여부 검증
+            if (passwordService.isPasswordBreached(signUpRequest.password)) {
+                throw BadRequestException("The password is in the hacker's database!")
+            }
+
             val user = userService.registerUser(signUpRequest)
             val response = SignUpResponse(
                 id = user.id,
@@ -39,18 +47,40 @@ class AuthController(
             )
             return ResponseEntity.status(HttpStatus.OK).body(response)
         } catch (ex: UserAlreadyExistsException) {
-            val currentDateTime = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            val formattedDateTime = currentDateTime.format(formatter)
-
-            val errorResponse = ErrorResponseDTO(
-                timestamp = formattedDateTime,
-                status = HttpStatus.BAD_REQUEST.value(),
-                error = HttpStatus.BAD_REQUEST.reasonPhrase,
-                message = ex.message ?: "",
-                path = "/api/auth/signup"
-            )
-            return ResponseEntity.badRequest().body(errorResponse)
+            throw UserAlreadyExistsException("User exists!")
         }
+    }
+
+    @PostMapping("/changepass")
+    fun changePassword(
+        @AuthenticationPrincipal userDetails: CustomUserDetails,
+        @RequestBody @Valid request: ChangePasswordRequest
+    ): ResponseEntity<Any> {
+        val username = userDetails.username
+        val newPassword = request.newPassword
+
+        // 비밀번호 유출 여부 검증
+        if (passwordService.isPasswordBreached(newPassword)) {
+            throw PasswordExceptions("The password is in the hacker's database!")
+        }
+
+        // 이전 비밀번호 검증
+        if (passwordService.isnewPasswordValid(username, newPassword)) {
+            throw BadRequestException("The passwords must be different!")
+        }
+
+        // 새로운 비밀번호의 보안 요구 사항 검증
+        if (!passwordService.isPasswordValid(newPassword)) {
+            throw BadRequestException("Password length must be 12 chars minimum!")
+        }
+
+        // 비밀번호 업데이트
+        passwordService.updateStoredPasswordHash(username, newPassword)
+
+        val response = mapOf(
+            "email" to username.lowercase(),
+            "status" to "The password has been updated successfully"
+        )
+        return ResponseEntity.ok(response)
     }
 }
