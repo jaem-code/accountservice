@@ -32,7 +32,9 @@ class SecurityConfig(
                     .antMatchers("/h2-console/**").permitAll() // H2 콘솔 접근 허용
                     .antMatchers("/actuator/shutdown").permitAll() //
                     .antMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
-                    .antMatchers("/api/empl/payment").authenticated() // /api/empl/payment은 인증된 사용자만 허용 // /api/signup은 인증 없이 허용
+                    .antMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
+                    .antMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
+                    .antMatchers(HttpMethod.GET,"/api/empl/payment").authenticated() // /api/empl/payment은 인증된 사용자만 허용 // /api/signup은 인증 없이 허용
                     .anyRequest().authenticated() // 나머지 요청은 인증된 사용자만 허용
             }
             .sessionManagement { sessions ->

@@ -21,7 +21,6 @@ import javax.validation.Valid
 class AuthController(
     private val userService: UserService,
     private val passwordService: PasswordService,
-    private val globalExceptionHandler: GlobalExceptionHandler
 ) {
     /**
      * 회원 가입을 처리하는 엔드포인트입니다.
@@ -47,7 +46,7 @@ class AuthController(
             )
             return ResponseEntity.status(HttpStatus.OK).body(response)
         } catch (ex: UserAlreadyExistsException) {
-            throw UserAlreadyExistsException("User exists!")
+            throw UserAlreadyExistsException("User exist!")
         }
     }
 
@@ -65,7 +64,7 @@ class AuthController(
         }
 
         // 이전 비밀번호 검증
-        if (passwordService.isnewPasswordValid(username, newPassword)) {
+        if (passwordService.isNewPasswordValid(username, newPassword)) {
             throw BadRequestException("The passwords must be different!")
         }
 

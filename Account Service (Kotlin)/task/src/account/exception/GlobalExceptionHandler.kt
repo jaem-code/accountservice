@@ -11,6 +11,9 @@ import org.springframework.web.context.request.WebRequest
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+// paymet Exception
+class PaymentsException(val error: String) : RuntimeException(error)
+
 // 사용자 중복 예외
 class UserAlreadyExistsException(val error: String) : RuntimeException(error)
 
@@ -38,6 +41,24 @@ enum class ValidationErrorCode(val message: String) {
 class GlobalExceptionHandler(
     private val formatter: DateTimeFormatter
 ) {
+    // 사용자 중복 예외 처리
+    @ExceptionHandler(PaymentsException::class)
+    fun handlePaymentsException(
+        e: PaymentsException,
+        request: WebRequest
+    ): ResponseEntity<ErrorResponse> {
+        // 예외 정보를 ErrorResponse로 포장하여 응답 생성
+        val body = ErrorResponse(
+            LocalDateTime.now().format(formatter),
+            HttpStatus.BAD_REQUEST.value(),
+            "Bad Request",
+            e.error,
+            request.getDescription(false).removePrefix("uri=")
+        )
+        return ResponseEntity(body, HttpStatus.BAD_REQUEST)
+    }
+
+
     // 사용자 중복 예외 처리
     @ExceptionHandler(UserAlreadyExistsException::class)
     fun handleUserAlreadyExistsException(

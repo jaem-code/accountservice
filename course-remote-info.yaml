@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/27566/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Tue, 29 Aug 2023 02:02:47 UTC"
+update_date: "Sat, 02 Sep 2023 07:33:34 UTC"
 stages:
 - id: 1861
   step: 27096
@@ -107,14 +107,14 @@ topics:
     theory_id: 20069
   - title: Spring Security Crypto
     theory_id: 21866
+  - title: HTTP Basic Auth
+    theory_id: 7778
   - title: "Web security, OWASP"
     theory_id: 14755
   - title: Intro to H2 database
     theory_id: 27725
   - title: Relational databases with Spring Data
     theory_id: 18086
-  - title: HTTP Basic Auth
-    theory_id: 7778
   - title: Getting started with Spring Security
     theory_id: 13856
   - title: Authentication

@@ -11,13 +11,13 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     val id: Long? = null,
-    val name: String,
-    val lastname: String,
+    val name: String?,
+    val lastname: String?,
 
     @Column(columnDefinition = "VARCHAR_IGNORECASE")
     val email: String,
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @field:Size(min = 12)
-    val password: String
+    val password: String,
 )
