@@ -3,10 +3,11 @@ package account.controller
 import account.dto.ChangePasswordRequest
 import account.dto.SignUpRequest
 import account.dto.SignUpResponse
-import account.exception.*
+import account.exception.BadRequestException
+import account.exception.PasswordExceptions
+import account.exception.UserAlreadyExistsException
+import account.service.AuthServiceImpl
 import account.service.CustomUserDetails
-import account.service.PasswordService
-import account.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -19,8 +20,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api/auth")
 class AuthController(
-    private val userService: UserService,
-    private val passwordService: PasswordService,
+    private val authServiceImpl: AuthServiceImpl,
 ) {
     /**
      * 회원 가입을 처리하는 엔드포인트입니다.
@@ -33,11 +33,11 @@ class AuthController(
     fun signUp(@RequestBody @Valid signUpRequest: SignUpRequest): ResponseEntity<Any> {
         try {
             // 비밀번호 유출 여부 검증
-            if (passwordService.isPasswordBreached(signUpRequest.password)) {
+            if (authServiceImpl.isPasswordBreached(signUpRequest.password)) {
                 throw BadRequestException("The password is in the hacker's database!")
             }
 
-            val user = userService.registerUser(signUpRequest)
+            val user = authServiceImpl.registerUser(signUpRequest)
             val response = SignUpResponse(
                 id = user.id,
                 name = user.name,
@@ -59,22 +59,22 @@ class AuthController(
         val newPassword = request.newPassword
 
         // 비밀번호 유출 여부 검증
-        if (passwordService.isPasswordBreached(newPassword)) {
+        if (authServiceImpl.isPasswordBreached(newPassword)) {
             throw PasswordExceptions("The password is in the hacker's database!")
         }
 
         // 이전 비밀번호 검증
-        if (passwordService.isNewPasswordValid(username, newPassword)) {
+        if (authServiceImpl.isNewPasswordValid(username, newPassword)) {
             throw BadRequestException("The passwords must be different!")
         }
 
         // 새로운 비밀번호의 보안 요구 사항 검증
-        if (!passwordService.isPasswordValid(newPassword)) {
+        if (!authServiceImpl.isPasswordValid(newPassword)) {
             throw BadRequestException("Password length must be 12 chars minimum!")
         }
 
         // 비밀번호 업데이트
-        passwordService.updateStoredPasswordHash(username, newPassword)
+        authServiceImpl.updateStoredPasswordHash(username, newPassword)
 
         val response = mapOf(
             "email" to username.lowercase(),

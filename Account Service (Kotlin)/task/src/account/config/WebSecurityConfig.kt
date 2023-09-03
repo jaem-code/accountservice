@@ -35,21 +35,13 @@ class SecurityConfig(
                     .antMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
                     .antMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
                     .antMatchers(HttpMethod.GET,"/api/empl/payment").authenticated() // /api/empl/payment은 인증된 사용자만 허용 // /api/signup은 인증 없이 허용
-                    .anyRequest().authenticated() // 나머지 요청은 인증된 사용자만 허용
             }
             .sessionManagement { sessions ->
                 sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 비활성화 (no session)
             }
             .authenticationProvider(daoAuthenticationProvider()) // DaoAuthenticationProvider 설정
             .httpBasic(Customizer.withDefaults()) // HTTP 기본 인증 사용 설정
-            // SecurityFilterChain 설정 종료
             .build()
-
-    // REST API에 대한 인증 예외 처리를 위한 빈 설정
-//    @Bean
-//    fun restAuthenticationEntryPoint(): AuthenticationEntryPoint {
-//        return RestAuthenticationEntryPoint()
-//    }
 
     // DaoAuthenticationProvider 설정을 위한 빈 설정
     @Bean
