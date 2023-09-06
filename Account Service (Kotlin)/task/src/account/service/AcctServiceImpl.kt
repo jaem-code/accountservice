@@ -26,7 +26,6 @@ class AcctServiceImpl(
             if (!Regex("^(0[1-9]|1[0-2])-\\d{4}\$").matches(paymentRequest.period)){
                 throw PaymentsException("Post: invalid period patter")
             }
-
             // Must be non-negative
             if (paymentRequest.salary < 0) {
                 throw PaymentsException("Post: non-negative error")
@@ -54,16 +53,13 @@ class AcctServiceImpl(
     override fun updatePayments(updatePayments: PaymentsRequest): PaymentResult {
         //유효성 검사: updatePayments의 employee가 DB 에 있는지 확인
         val existingUpdateUser = userRepository.findByEmailIgnoreCase(updatePayments.employee)
-
         if (existingUpdateUser == null) {
             throw PaymentsException("Put: User aren't existed")
         }
-
         // period check
         if (!Regex("^(0[1-9]|1[0-2])-\\d{4}\$").matches(updatePayments.period)){
             throw PaymentsException("Put: invalid period pattern")
         }
-
         //
         val updatePaymentsUser = paymentRepository.findByEmployeeIgnoreCaseAndPeriod(
             updatePayments.employee, updatePayments.period

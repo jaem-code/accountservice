@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
-import javax.validation.constraints.Pattern
 
 
 @RestController
@@ -25,8 +23,10 @@ class EmplController(
         @AuthenticationPrincipal userDetails: CustomUserDetails,
         @RequestParam(required = false) period: String?,
     ): ResponseEntity<Any> {
+        // PaymentRepository에 Data 가 있는지 확인. User는 있지만, Data가 없는 경우도 존재.
         val checkPaymentRepository = paymentRepository.findByEmployeeIgnoreCase(userDetails.getEmail())
 
+        // Data가 있을 때, period 체크
         if (checkPaymentRepository.isNotEmpty()) {
             if (period != null ) {
                 val periodNotNull = emplService.getPaymentByPeriodAndEmployee(period, userDetails.getEmail())
