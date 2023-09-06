@@ -15,6 +15,9 @@ class AuthServiceImpl(
 ): AuthService{
     // 회원 가입을 처리하는 메서드
     override fun registerUser(signUpRequest: SignUpRequest): User {
+        //email 소문자로 변환
+        val lowercaseEmail = signUpRequest.email.lowercase()
+
         // 이미 등록된 이메일인지 검사
         val existingUser = userRepository.findByEmailIgnoreCase(signUpRequest.email)
         if (existingUser != null) {
@@ -28,7 +31,7 @@ class AuthServiceImpl(
         val user = User(
             name = signUpRequest.name,
             lastname = signUpRequest.lastname,
-            email = signUpRequest.email,
+            email = lowercaseEmail,
             password = encryptedPassword
         )
 

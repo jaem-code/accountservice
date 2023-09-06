@@ -1,6 +1,7 @@
 package account.entity
 
 import javax.persistence.*
+import javax.validation.constraints.Pattern
 
 @Entity
 @Table(
@@ -18,7 +19,8 @@ data class Payment (
 
     var employee: String,
 
+    @field:Pattern(regexp = "^(0[1-9]|1[0-2])-\\d{4}\$")
     var period: String,
 
-    var salary: String,
+    var salary: Long,
 )

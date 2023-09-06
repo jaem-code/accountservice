@@ -7,7 +7,10 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface PaymentRepository: JpaRepository<Payment, Long> {
-    fun findByEmployeeAndPeriod(employee: String, period: String): Payment?
+    // Payment? '?' -> Result must not be null issue
+    fun findByEmployeeIgnoreCaseAndPeriod(employee: String, period: String): Payment?
 
-    fun findByEmployee(employee: String):List<Payment>
+    fun findByEmployeeIgnoreCase(employee: String):List<Payment>
+
+//  fun findByEmployeeOrderByPeriodDesc(employee: String): List<Payment>
 }

@@ -13,6 +13,8 @@ interface UserRepository : JpaRepository<User, Long> {
     // 이메일을 대소문자 구분 없이 검색하여 사용자 정보를 가져옵니다.
     fun findByEmailIgnoreCase(email: String): User?
 
+    //fun findAllByOrderById(): List<User>;
+
     // 비밀번호 업데이트를 위한 쿼리 메서드입니다.
     @Transactional
     @Modifying

@@ -47,8 +47,12 @@ class EmplServiceImpl(
 
     // 주어진 기간과 직원의 이메일로 급여 정보를 조회하는 함수
     override fun getPaymentByPeriodAndEmployee(period: String, employee: String): PaymentResponse? {
-        val payment = paymentRepository.findByEmployeeAndPeriod(employee, period)
+        val payment = paymentRepository.findByEmployeeIgnoreCaseAndPeriod(employee.lowercase(), period)
         val user = userRepository.findByEmailIgnoreCase(employee)
+
+        if (!Regex("^(0[1-9]|1[0-2])-\\d{4}\$").matches(period)){
+            throw PaymentsException("Get: invalid period pattern")
+        }
 
         // 해당하는 데이터 없을 때, 예외 처리
         if (payment == null) {
@@ -66,7 +70,7 @@ class EmplServiceImpl(
 
     // 주어진 직원의 이메일로 급여 정보를 조회하는 함수
     override fun getPaymentByEmployee(employee: String): List<PaymentResponse> {
-        val payments = paymentRepository.findByEmployee(employee)
+        val payments = paymentRepository.findByEmployeeIgnoreCase(employee.lowercase())
         val user = userRepository.findByEmailIgnoreCase(employee)
 
         if (payments.isEmpty()) {

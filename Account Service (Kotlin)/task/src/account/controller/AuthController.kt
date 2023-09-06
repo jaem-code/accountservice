@@ -77,7 +77,7 @@ class AuthController(
         authServiceImpl.updateStoredPasswordHash(username, newPassword)
 
         val response = mapOf(
-            "email" to username.lowercase(),
+            "email" to username,
             "status" to "The password has been updated successfully"
         )
         return ResponseEntity.ok(response)

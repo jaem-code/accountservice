@@ -24,9 +24,11 @@ class SecurityConfig(
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain =
         http
-            .exceptionHandling { ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint) } // 예외 처리 설정
+            .httpBasic(Customizer.withDefaults()) // HTTP 기본 인증 사용 설정
+            .authenticationProvider(daoAuthenticationProvider()) // DaoAuthenticationProvider 설정
             .csrf { csrf -> csrf.disable() }  // CSRF 보호 비활성화 (Postman을 위해)
             .headers { headers -> headers.frameOptions().disable() } // X-Frame-Options 비활성화 (H2 콘솔을 위해)
+            .exceptionHandling { ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint) } // 예외 처리 설정
             .authorizeRequests { auth ->
                 auth
                     .antMatchers("/h2-console/**").permitAll() // H2 콘솔 접근 허용
@@ -34,16 +36,15 @@ class SecurityConfig(
                     .antMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
                     .antMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
                     .antMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
-                    .antMatchers(HttpMethod.GET,"/api/empl/payment").authenticated() // /api/empl/payment은 인증된 사용자만 허용 // /api/signup은 인증 없이 허용
+                    .antMatchers(HttpMethod.GET,"/api/empl/payment").authenticated() // /api/empl/payment은 인증된 사용자만 허용
+                    .anyRequest().authenticated()
             }
             .sessionManagement { sessions ->
                 sessions.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 비활성화 (no session)
             }
-            .authenticationProvider(daoAuthenticationProvider()) // DaoAuthenticationProvider 설정
-            .httpBasic(Customizer.withDefaults()) // HTTP 기본 인증 사용 설정
             .build()
 
-    // DaoAuthenticationProvider 설정을 위한 빈 설정
+    // 사용자의 인증 처리를 담당 - DaoAuthenticationProvider 설정을 위한 빈 설정
     @Bean
     fun daoAuthenticationProvider(): DaoAuthenticationProvider {
         val authProvider = DaoAuthenticationProvider()

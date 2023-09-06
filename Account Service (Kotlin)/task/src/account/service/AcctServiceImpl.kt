@@ -22,12 +22,17 @@ class AcctServiceImpl(
             if (existingUser == null) {
                 throw PaymentsException("Post: User aren't existed")
             }
+            // period check
+            if (!Regex("^(0[1-9]|1[0-2])-\\d{4}\$").matches(paymentRequest.period)){
+                throw PaymentsException("Post: invalid period patter")
+            }
+
             // Must be non-negative
-            if (paymentRequest.salary.toInt() < 0) {
+            if (paymentRequest.salary < 0) {
                 throw PaymentsException("Post: non-negative error")
             }
             // Validate Unique
-            val existingPayment = paymentRepository.findByEmployeeAndPeriod(
+            val existingPayment = paymentRepository.findByEmployeeIgnoreCaseAndPeriod(
                 paymentRequest.employee, paymentRequest.period
             )
             if (existingPayment != null) {
@@ -36,7 +41,7 @@ class AcctServiceImpl(
 
             // Create and save payment
             val payment = Payment(
-                employee = paymentRequest.employee,
+                employee = paymentRequest.employee.lowercase(),
                 period = paymentRequest.period,
                 salary = paymentRequest.salary
             )
@@ -54,8 +59,13 @@ class AcctServiceImpl(
             throw PaymentsException("Put: User aren't existed")
         }
 
+        // period check
+        if (!Regex("^(0[1-9]|1[0-2])-\\d{4}\$").matches(updatePayments.period)){
+            throw PaymentsException("Put: invalid period pattern")
+        }
+
         //
-        val updatePaymentsUser = paymentRepository.findByEmployeeAndPeriod(
+        val updatePaymentsUser = paymentRepository.findByEmployeeIgnoreCaseAndPeriod(
             updatePayments.employee, updatePayments.period
         )
         if (updatePaymentsUser != null) {
@@ -64,8 +74,6 @@ class AcctServiceImpl(
             // Save the updated entity
             paymentRepository.save(updatePaymentsUser)
         }
-        return PaymentResult(status = "Added successfully!")
+        return PaymentResult(status = "Updated successfully!")
     }
-
-
 }
